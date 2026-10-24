@@ -532,6 +532,8 @@ mark{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit;bor
 dialog.acct input[autocomplete=username],dialog.acct input[type=password]{font-family:var(--ui);font-weight:600;letter-spacing:0;margin:0 0 8px}
 dialog.acct .warnbox ul{margin:4px 0 0;padding-left:18px}dialog.acct .warnbox li{margin:3px 0}
 .onbemail{margin-top:10px}.onbemail summary{cursor:pointer;font-weight:800;color:var(--accent2)}
+.conceptrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 18px}.conceptrow .concept{margin:0}
+.topicbtn{padding:4px 12px;font-size:.85rem;box-shadow:2px 2px 0 var(--line2)}
 </style>
 </head>
 <body>
@@ -640,7 +642,7 @@ dialog.acct .warnbox ul{margin:4px 0 0;padding-left:18px}dialog.acct .warnbox li
     <section class="charts"><h2>Charts for this sentence <button id="ctoggle">Hide</button></h2><div class="cgrid" id="cbody"></div></section>
     <section class="uses"><h2>Why this form? <span class="hint">Uses of ser, estar, por, para, the preterite, the imperfect and the subjunctive. Closed on every new problem; opening one voids extra credit for it.</span></h2><div class="cgrid" id="usesBody"></div></section>
     <section class="tablet">
-      <p class="concept" id="concept"></p>
+      <div class="conceptrow"><button type="button" class="btn quiet topicbtn" id="showtopic" hidden>Show topic</button><p class="concept" id="concept"></p></div>
       <div id="qbody"></div>
       <div class="controls">
         <button class="btn" id="check">Check answer</button>
@@ -2451,6 +2453,7 @@ function next(){
   $('concept').textContent=blanks.length>1?'Mixed: '+[...new Set(blanks.map(b=>TOPICS.find(t=>b.cids.includes(t.id)&&selected.has(t.id))||q.topic).map(t=>t.name))].join(' + '):q.topic.name;
   q.mode=(q.choice||q.form)?'blank':modeSel();
   if(q.mode!=='blank')$('concept').textContent=q.topic.name;
+  hideTopic();
   $('macrons').hidden=$('machint').hidden=!!q.choice||q.mode==='l2e'||q.mode==='id';$('check').hidden=!!q.choice;$('vocab').hidden=!!q.choice;
   if(q.choice){
     $('qbody').innerHTML=`<p class="line">${esc(q.line)}</p><p class="cite">${esc(q.cite)}</p><p class="english">Which device does this line show?</p><div class="choices">${q.options.map(o=>`<button data-o="${o}">${cap(o)}</button>`).join('')}</div>`;
@@ -3142,6 +3145,7 @@ function profUI(){
   });
 }
 buildUses();
+$('showtopic').addEventListener('click',()=>{if(q&&!checked||q&&q.xc&&!q.xc.done)q.topicShownEarly=true;showTopic()});
 $('acctbtn').addEventListener('click',()=>{$('acct').showModal();acctUI();profUI()});
 $('acctClose').addEventListener('click',()=>$('acct').close());
 $('acct').addEventListener('click',e=>{if(e.target===$('acct'))$('acct').close()});
@@ -3221,11 +3225,16 @@ function addXC(){
   const li=document.createElement('li');li.className='xc';li.id='xcli';li.innerHTML=`<button type="button" class="btn quiet xcbtn" id="xcbtn">+ Extra credit</button> <span class="hint">Name why one word is used for bonus XP.</span>`;
   $('feedback').appendChild(li);$('xcbtn').addEventListener('click',()=>{q.xc.open=true;renderXC();const i=$('xcin');if(i)i.focus()});
 }
+/* the topic label gives the extra credit away, so it starts hidden on translation problems */
+function hideTopic(){const tr=q&&(q.mode==='e2l'||q.mode==='l2e');q.topicShown=!tr;$('concept').hidden=tr;$('showtopic').hidden=!tr;
+  $('showtopic').textContent='Show topic';$('showtopic').title='Showing the topic voids this problem’s extra credit';}
+function showTopic(){if(!q)return;q.topicShown=true;$('concept').hidden=false;$('showtopic').hidden=true;if(q.xc&&!q.xc.done)renderXC()}
+const xcVoid=(qq,ty)=>qq.opened&&qq.opened.has(ty.c)?`you opened the ${USES[ty.c].name} uses chart`:qq.topicShown&&qq.topicShownEarly?'you showed the topic':'';
 function renderXC(){
-  const x=q.xc,li=$('xcli');if(!x||!li||!x.open)return;const ty=TYPES[x.id],cs=USES[ty.c],voided=!!(q.opened&&q.opened.has(ty.c));
+  const x=q.xc,li=$('xcli');if(!x||!li||!x.open)return;const ty=TYPES[x.id],cs=USES[ty.c],why=xcVoid(q,ty),voided=!!why;
   if(x.done)return;
   const keep=$('xcin')?$('xcin').value:'';
-  li.innerHTML=`<b>Extra credit</b> · ${voided?`<span class="bad">You opened the ${cs.name} uses chart on this problem, so this is practice only (no XP).</span>`:`<span class="hint">+6 XP, or +3 XP with multiple choice. Opening the ${cs.name} uses chart voids it.</span>`}
+  li.innerHTML=`<b>Extra credit</b> · ${voided?`<span class="bad">${cap(why)} on this problem, so this is practice only (no XP).</span>`:`<span class="hint">+6 XP, or +3 XP with multiple choice. Showing the topic or opening the ${cs.name} uses chart voids it.</span>`}
   <p class="line xcline">${latinMarked(q,x.tok)}</p>
   <p>Which use of ${cs.word} is <mark class="la">${esc(phraseOf(q,x.tok))}</mark>?</p>
   <div class="row"><input type="text" id="xcin" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type the use" aria-label="Extra credit answer"${x.mc?' disabled':''}><button type="button" class="btn quiet" id="xcgo"${x.mc?' hidden':''}>Check</button><button type="button" class="btn quiet" id="xcmc"${x.mc?' disabled':''}>Multiple choice (half credit)</button></div>
@@ -3240,10 +3249,10 @@ function xcCheck(viaMC){
   const x=q.xc;if(!x||x.done)return;const ty=TYPES[x.id],cs=USES[ty.c],r=viaMC?{ok:viaMC===x.id}:gradeUse(x.id,$('xcin').value);
   if(r.empty){$('xcmsg').textContent='Type a use first, or choose Multiple choice.';return}
   if(r.vague){$('xcmsg').innerHTML=`<b class="mac">Be more specific:</b> that fits more than one use of ${cs.word}.`;return}
-  x.done=true;const voided=!!(q.opened&&q.opened.has(ty.c)),pts=r.ok&&!voided?(x.mc?3:6):0;
+  x.done=true;const why=xcVoid(q,ty),voided=!!why,pts=r.ok&&!voided?(x.mc?3:6):0;
   const li=$('xcli');li.className=r.ok?(pts?'ok':'mac'):'bad';
-  li.innerHTML=`<b class="${r.ok?(pts?'ok':'mac'):'bad'}">Extra credit: ${r.ok?(pts?`correct! +${pts} XP`:'correct, but no XP because you opened the chart'):'not quite'}.</b> ${useLine(q,x.tok,x.id)}`;
-  if(pts)gainXP(pts,li);react(pts?'ok':r.ok?'leak':'bad');
+  li.innerHTML=`<b class="${r.ok?(pts?'ok':'mac'):'bad'}">Extra credit: ${r.ok?(pts?`correct! +${pts} XP`:`correct, but no XP because ${why}`):'not quite'}.</b> ${useLine(q,x.tok,x.id)}`;
+  if(pts)gainXP(pts,li);react(pts?'ok':r.ok?'leak':'bad');showTopic();
 }
 function check(){
   if(checked){next();return;}
@@ -3290,7 +3299,7 @@ async function checkT(){
   else if(q.leaked){li=li.replace(/<br><button class="btn quiet" id="override">[^<]*<\/button>/,'');li+=`<li class="bad"><b class="bad">This sentence also counts as wrong</b> because one of your questions before answering was too leading.</li>`;}
   $('feedback').innerHTML=li;checked=true;$('check').textContent='Next sentence';$('check').focus();score();renderChat();
   const o=$('override');if(o)o.addEventListener('click',()=>{stats.right++;stats.streak=prev+1;o.remove();award();react('ok');score()});
-  addXC();
+  addXC();if(!q.xc)showTopic();
 }
 $('qbody').addEventListener('click',e=>{
   const o=e.target.dataset&&e.target.dataset.o;if(!o||checked)return;checked=true;
