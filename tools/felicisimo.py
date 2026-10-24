@@ -132,7 +132,18 @@ def book(x,y):
     s+=f'<rect x="{x-14}" y="{y-11}" width="38" height="22" rx="3" fill="{SHIRT}" {st(2.2)}/>'
     s+=line(f'M{x-3},{y+7} L{x-3},{y-3} M{x-3},{y} Q{x+4},{y-7} {x+11},{y} L{x+11},{y+7}',3.2)+line(f'M{x-3},{y-8} Q{x+1},{y-12} {x+4},{y-9} Q{x+8},{y-6} {x+11},{y-10}',2.6)+'</g>'
     return s
-TAB=lambda:book(120,210)
+# a red rose held in the left paw (replaced the book, which is kept in unused/felicisimo-book/)
+def rose():
+    s = f'<path d="M16,26 C6,8 -10,-14 -28,-40" fill="none" stroke="{O}" stroke-width="7.5" stroke-linecap="round"/><path d="M16,26 C6,8 -10,-14 -28,-40" fill="none" stroke="#4E7A32" stroke-width="3.6" stroke-linecap="round"/>'
+    s += f'<path d="M-6,-12 C-22,-12 -28,-2 -30,6 C-18,6 -8,0 -6,-12 Z" fill="#5E8F3A" {st(2.4)}/>' + line('M-8,-10 Q-18,-4 -26,4', 1.4, '#3E6526')
+    s += f'<path d="M4,6 C16,-2 26,2 30,10 C20,14 8,12 4,6 Z" fill="#5E8F3A" {st(2.4)}/>'
+    s += f'<path d="M-30,-34 L-36,-30 L-28,-30 Z" fill="#5E8F3A" {st(2)}/>'
+    # bloom: outer petals, cupped middle, spiral
+    s += f'<path d="M-46,-48 C-50,-64 -34,-74 -24,-66 C-12,-72 -2,-58 -10,-48 C-8,-36 -22,-30 -30,-34 C-40,-30 -50,-38 -46,-48 Z" fill="#C8283A" {st(3)}/>'
+    s += f'<path d="M-38,-50 C-38,-60 -24,-62 -20,-54 C-16,-46 -24,-40 -30,-42" fill="#E0414F" {st(2.4)}/>'
+    s += line('M-32,-52 C-28,-56 -24,-52 -27,-48', 2, '#8E1426') + line('M-44,-44 C-38,-38 -30,-38 -22,-44', 2, '#8E1426')
+    return s
+TAB=lambda P:'<g transform="translate({} {})">{}</g>'.format(*P['arms'][0][3],rose())
 def think_dots(): return ''.join(f'<circle cx="{x}" cy="{y}" r="{r}" fill="#FFF8EA" {st(2.4)}/>' for x,y,r in ((190,50,4),(202,36,5.5),(216,20,7)))
 POSE0={
  'happy':dict(tilt=-6,tab=1,arms=[(L,(66,216),(72,218),(82,212),0),(R,(204,198),(212,168),(204,144),-20)]),
@@ -205,7 +216,7 @@ def head_svg(mood):
     h+=face(mood)+hat()
     if mood=='fish': h+=fishprop()
     return h
-def build(mood):
+def build(mood,face=False):
     P=POSE[mood];dy=14+P.get('lift',0)+P.get('drop',0)
     s=f'<path d="{BUST}" fill="{JACK}" {st(3.6)}/><g clip-path="url(#body)">'
     s+=f'<path d="M96,160 L144,160 L131,240 L109,240 Z" fill="{SHIRT}" {st(2.6)}/>'
@@ -217,7 +228,7 @@ def build(mood):
     s+=f'<path d="M120,164 L220,180 L220,240 L150,240 Z" fill="#000" opacity=".12"/></g>'
     s+=f'<path d="M98,160 Q120,176 142,160 L142,172 Q120,184 98,172 Z" fill="{MUZ}" {st(3)}/>'
     s+=f'<path d="M104,172 L120,178 L136,172 L128,200 L120,186 L112,200 Z" fill="{RED}" {st(2.8)}/><path d="M114,174 Q120,170 126,174 L125,183 Q120,186 115,183 Z" fill="{REDD}" {st(2.4)}/>'
-    if P.get('tab'): s+=TAB()
+    if P.get('tab') and not face: s+=TAB(P)  # face crops leave the rose out
     s+=f'<g transform="translate(0 {dy}) rotate({P["tilt"]} 120 150)">{head_svg(mood)}</g>'
     for sh,c1,c2,end,a in P['arms']: s+=float_paw(end,a,sh[0]<120)
     if 'fx' in P: s+=P['fx']()
@@ -227,7 +238,7 @@ def svg(mood,face=False):
     vb='46 4 148 148' if face else '0 0 240 240';w=148 if face else 240
     defs=(f'<defs><filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter>'
           f'<clipPath id="head"><path d="{HEAD}"/></clipPath><clipPath id="body"><path d="{BUST}"/></clipPath></defs>')
-    return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" width="{w}" height="{w}">\n{defs}\n<g filter="url(#rough)">\n{build(mood)}\n</g>\n</svg>\n'
+    return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" width="{w}" height="{w}">\n{defs}\n<g filter="url(#rough)">\n{build(mood,face)}\n</g>\n</svg>\n'
 if __name__=='__main__':
     import sys
     out=sys.argv[1]
