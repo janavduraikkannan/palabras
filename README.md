@@ -4,7 +4,7 @@
 
 **Use it here: https://janavduraikkannan.github.io/palabras/**
 
-Part of **[Linguae](https://janavduraikkannan.github.io/learnlanguage/)**, the home page for every language site, with one account for all of them.
+Part of **[Linguae](https://janavduraikkannan.github.io/linguae/)**, the home page for every language site, with one account for all of them.
 
 Palabras is the Spanish sister site of [Verba](https://janavduraikkannan.github.io/verba/) (Latin). It builds fresh Spanish sentences from the topics you pick, then has you translate the whole sentence, English to Spanish or Spanish to English. It checks your answer, tells you exactly what went wrong, and lets you ask Felicísimo, an AI tutor, questions about the grammar along the way.
 
@@ -13,6 +13,7 @@ Palabras is the Spanish sister site of [Verba](https://janavduraikkannan.github.
 ## What it does
 
 - **Topics by course.** Grammar topics grouped under Spanish I, Spanish II, Spanish III Honors, Spanish IV Honors and AP Spanish Language: from articles, ser and estar and the present tense, through the preterite and imperfect, object pronouns and commands, to every use of the subjunctive and si clauses.
+- **Topics from real class notes.** Spanish I Honors and Spanish II Honors notes from Collierville High School are built in: telling time, dates, weather, numbers to 1,000, clothes and colors, the present-tense irregular lists (-go, -zco, -jo, -uir verbs), the preterite (regular, -car/-gar/-zar, stem changers, i → y, irregular stems), direct object pronouns, verbs like gustar, and the present and past perfect, plus the notes' vocabulary (school, errands, getting ready, shopping). Topics the notes cover are shaded, and **Select the shaded topics** picks them all. Felicísimo knows the class's memory aids, like "All Corn Dies Early" for the irregular past participles.
 - **Build your own sentence type.** Pick a main structure (statement, question, verb + infinitive, ir a, command, si clause) and what goes inside it (adjectives, possessives, object pronouns, places, time expressions, a tense).
 - **Focus.** Press Focus on any topic and every sentence will practice it, mixing in your other ticked topics.
 - **Whole-sentence translation**, checked first by the site and then, if needed, by the AI, so other correct versions are accepted too.
