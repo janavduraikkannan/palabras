@@ -36,9 +36,10 @@ Palabras is a static website hosted on GitHub Pages, with no server and no build
 | Path | What it is |
 | --- | --- |
 | `index.html` | The whole app: the Spanish sentence engine, answer checker, interface and account code |
+| `js/usemode.js` | The identify-the-use tab: choosing which uses to drill, AI grading for typed uses, and "Mark my answer as correct". New features go in their own files like this one and are linked from `index.html` |
+| `css/usemode.css` | Styles for the identify-the-use tab |
 | `getkey.html` | Guide to getting a free Groq key |
 | `keys.html` | Every AI provider that works, with free limits |
-| `firestore.rules` | Security rules shared with Verba: accounts, both leaderboards, usernames and password logins |
 | `img/felicisimo/` | Felicísimo, in every mood |
 | `img/icons/` | Interface icons |
 | `media/` | The key tutorial video, its captions and poster |
