@@ -35,12 +35,11 @@ Palabras is a static website hosted on GitHub Pages, with no server and no build
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | The whole app: the Spanish sentence engine, answer checker, interface and account code |
-| `js/usemode.js` | The identify-the-use tab, shared by every site: choosing which uses to drill (shaded when the class notes cover them), English or target-language sentences, AI grading for typed uses, and "Mark my answer as correct". New features go in their own files like this one and are linked from `index.html` |
-| `css/usemode.css` | Styles for the identify-the-use tab |
-| `js/moreuses.js` | This site's uses beyond the ones in the engine, so the identify-the-use tab covers every case or form use in the course |
-| `getkey.html` | Guide to getting a free Groq key |
-| `keys.html` | Every AI provider that works, with free limits |
+| `index.html`, `keys.html`, `getkey.html` | The pages. These are identical on every practice site; Palabras's name, cat and wording are filled in from `site/config.js` |
+| `css/` | Styles, identical on every practice site (`main.css` for the app, `usemode.css` for the identify-the-use tab) |
+| `js/` | The app, identical on every practice site, one file per part: `core.js` (state and saving), `topics.js` (start screen), `ai.js` and `keys.js` (AI providers and keys), `onboarding.js`, `tutor.js` (asking Felicísimo), `drill.js` (each new sentence), `check.js` (checking answers), `progress.js` (XP and streaks), `sync.js` and `login.js` (accounts), `leaderboard.js`, `pages.js` (profile and ranks pages), `profile.js`, `identify.js` and `usemode.js` (the identify-the-use tab), `vocab.js`, `widgets.js`, `boot.js` (start-up), plus `head.js` and `site-fill.js` (put the site's own text into the pages) |
+| `site/` | Everything that is only Palabras: `config.js` (names, wording, courses, ranks, profile pictures), `cat.js` (Felicísimo's personality and the AI prompts), `language.js` (how Spanish behaves in the shared code: typing accents, charts, marking words), `engine.js` (the Spanish sentence engine and answer checker), `uses.js` (extra uses for the identify-the-use tab) and `theme.css` (colours) |
+| Shared code | Changed in Verba first, then copied here with Verba's `tools/sync_shared.py`, so every site stays identical |
 | `img/felicisimo/` | Felicísimo, in every mood |
 | `img/icons/` | Interface icons |
 | `media/` | The key tutorial video, its captions and poster |

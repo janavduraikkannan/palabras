@@ -1,0 +1,9 @@
+/* Palabras's colours: the accent colours and level colours, light and dark. Everything else is in css/main.css. */
+:root{
+  --accent:#B23A26; --accent-ink:#FFF6E8; --accent-shadow:#701F12; --accent2:#2D5193; --accent2-ink:#FFFFFF; --brand:#2D5193;
+  --lv1:#B8861B; --lv2:#2D5193; --lv3:#4E7A2E; --lv4:#8E3B4F; --lv5:#B23A26;
+}
+:root[data-theme="dark"]{
+  --accent:#E07A58; --accent-ink:#1E1B17; --accent-shadow:#7E3A22; --accent2:#8FB0E6; --accent2-ink:#111A2C; --brand:#8FB0E6;
+  --lv1:#DDB25A; --lv2:#8FB0E6; --lv3:#9CC47F; --lv4:#D98B9C; --lv5:#E58A6E;
+}

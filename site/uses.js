@@ -1,7 +1,6 @@
 /* ---------- Spanish: the rest of the course's form uses, for the identify-the-use tab ----------
-   Loaded after js/usemode.js. Each new use has a gen() that builds a sentence with exactly one word
+   Loaded after js/usemode.js (the language name, LANG_NAME, is in site/config.js). Each new use has a gen() that builds a sentence with exactly one word
    tagged with the use's id, starting from the course's own topic generators. */
-const LANG_NAME='Spanish';
 const useAsk=ty=>`Which use of ${USES[ty.c].word} is`;
 const useOf=ty=>`use of ${USES[ty.c].word}`;
 const XC_SKIP=()=>false;
