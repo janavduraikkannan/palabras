@@ -127,6 +127,7 @@ When an answer needs checking or you ask Felicísimo a question, your browser se
 | OpenAI | [openai.com/policies/privacy-policy](https://openai.com/policies/privacy-policy/) |
 | Anthropic | [anthropic.com/legal/privacy](https://www.anthropic.com/legal/privacy) |
 | xAI | [x.ai/legal/privacy-policy](https://x.ai/legal/privacy-policy) |
+| Gonka Broker | [gonkabroker.com](https://gonkabroker.com) (requests are run on GPUs operated by independent hosts in the Gonka network) |
 
 When you sign up for an AI key, the email and details you give go to that company, not to Palabras.
 
