@@ -6,7 +6,7 @@ const selected=new Set();let q=null,checked=false,lastInput=null;
 const stats={right:0,total:0,streak:0};
 /* Accounts are shared by every language site: the profile, login and AI settings are global (verba.*); XP, levels, streaks and topics
    belong to one language. Verba (SITE.langKey null) keeps Latin progress under verba.* too; the others use their own prefix (mots.*). */
-const LANG=SITE.langKey,GLOBAL_KEYS=['profile','login','prov','keyadv'],LANG_KEYS=['xp','days','wk','best','since','topics','bFrames','bIngs','bFocus','tFocus','per','mode','limit','tab','course'];
+const LANG=SITE.langKey,GLOBAL_KEYS=['profile','login','prov','keyadv'],LANG_KEYS=['xp','days','wk','best','since','topics','bFrames','bIngs','bFocus','tFocus','per','mode','limit','tab','course','lessons'];
 const SK=k=>(GLOBAL_KEYS.includes(k)?'verba.':SITE.id+'.')+k;
 const store={get(k,d){try{const v=localStorage.getItem(SK(k));return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(SK(k),JSON.stringify(v))}catch(e){}try{acctDirty(k)}catch(e){}}};
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));

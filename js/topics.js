@@ -30,14 +30,15 @@ function buildStart(){
     if(bFocus.has(v))bFocus.delete(v);else{bFocus.add(v);(isF?bFrames:bIngs).add(v);b.parentNode.querySelector('input').checked=true;}
     focusUI();sync()});
   $('per').addEventListener('change',()=>store.set('per',$('per').value));
-  const setTab=t=>{if(!['topics','build','uses'].includes(t))t='topics';tab=t;[['topics','Topics'],['build','Build'],['uses','Uses']].forEach(([k,n])=>{$('tab'+n).setAttribute('aria-selected',t===k);$('pane'+n).hidden=t!==k});document.querySelector('#bar fieldset').hidden=t==='uses';store.set('tab',t);sync()};
-  $('tabTopics').addEventListener('click',()=>setTab('topics'));$('tabBuild').addEventListener('click',()=>setTab('build'));$('tabUses').addEventListener('click',()=>setTab('uses'));
+  const setTab=t=>{if(!['topics','build','uses','lessons','tests'].includes(t)||(t==='lessons'&&!LS_ON)||(t==='tests'&&!PT_ON))t='topics';tab=t;[['topics','Topics'],['build','Build'],['uses','Uses'],['lessons','Lessons'],['tests','Tests']].forEach(([k,n])=>{$('tab'+n).setAttribute('aria-selected',t===k);$('pane'+n).hidden=t!==k});document.querySelector('#bar fieldset').hidden=t==='uses'||t==='lessons'||t==='tests';$('bar').classList.toggle('lsbar',t==='lessons'||t==='tests');store.set('tab',t);sync()};
+  $('tabTopics').addEventListener('click',()=>setTab('topics'));$('tabBuild').addEventListener('click',()=>setTab('build'));$('tabUses').addEventListener('click',()=>setTab('uses'));$('tabLessons').addEventListener('click',()=>setTab('lessons'));$('tabTests').addEventListener('click',()=>setTab('tests'));
   buildUsePane();
   setTab(store.get('tab','topics'));
 }
 function tFocusUI(){document.querySelectorAll('#levels .fbtn').forEach(b=>{const on=tFocus.has(b.dataset.t);b.setAttribute('aria-pressed',on);b.parentNode.classList.toggle('focused',on)})}
 function focusUI(){document.querySelectorAll('#paneBuild .fbtn').forEach(b=>{const on=bFocus.has(b.dataset.f);b.setAttribute('aria-pressed',on);b.parentNode.classList.toggle('focused',on)})}
 function sync(){
+  if(tab==='lessons'||tab==='tests')return;
   if(tab==='uses'){usesSync();return}
   if(tab==='build'){
     const n=bFrames.size;$('startbtn').disabled=!n;

@@ -86,6 +86,7 @@ function setupTyping(){
   const accType=(t,only)=>{const p=t.selectionStart,v=t.value,k=v.slice(p-2,p);if(p>1&&MAC[k]&&(!only||only.includes(k[1]))){t.value=v.slice(0,p-2)+MAC[k]+v.slice(p);t.setSelectionRange(p-1,p-1)}};
   $('qbody').addEventListener('input',e=>{const t=e.target;if(t.tagName!=='INPUT'||q.mode==='l2e'||q.mode==='id')return;accType(t)});
   $('macrons').innerHTML=['á','é','í','ó','ú','ñ','ü','¿','¡'].map(c=>`<button type="button" aria-label="Insert ${c}">${c}</button>`).join('');
+  window.typeAssist=t=>accType(t); // typing shortcuts for the practice test's boxes
   $('askq').addEventListener('input',e=>accType(e.target,'~´'));
 }
 /* js/vocab.js: the word to type when a vocabulary line is clicked */

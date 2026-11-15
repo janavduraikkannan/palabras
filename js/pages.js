@@ -19,6 +19,7 @@ function renderRanks(){
     <h2>How XP works</h2>
     <div class="pcard"><p>Every answer that counts as correct earns XP. The first one in a row earns <b>10 XP</b>, and each correct answer after that in the same run earns 2 more: 12, 14, 16, 18, then <b>20 XP</b> for every answer from the sixth in a row on. A wrong answer resets the run to 10.</p>
       <p>Answers don’t earn XP if they’re wrong, or if you asked ${SITE.cat} a question that was too leading before answering. Questions after you answer never cost anything.</p>
+      ${LS_ON?`<p>In Lessons, a question spot pays <b>${LESSONS.xp.question} XP</b> the first time you get one of its questions right, and pressing Finish pays <b>${LESSONS.xp.finish} XP</b> the first time. Marking a lesson complete pays nothing.</p>`:''}
       <p>Each level needs 100 more XP than the one before: Level <i>n</i> starts at 50 × <i>n</i> × (<i>n</i> − 1) XP, so 100 XP for Level 2, 300 for Level 3, 600 for Level 4 and so on. Your <b>day streak</b> counts days in a row with at least one correct answer, and <b>weekly XP</b> on the leaderboard resets every Monday.</p></div>
     <h2>All ranks</h2>
     <ol class="ladder">${ladder}</ol>
@@ -77,10 +78,12 @@ async function showProfile(key){
   }catch(e){pv.innerHTML=pvTop()+`<section class="pv"><h1>Couldn’t load this profile</h1><p>${esc(e.message)}</p></section>`;pvBind()}
 }
 function route(){
-  const h=decodeURIComponent(location.hash.slice(1)),pv=$('pageview'),on=h==='ranks'||/^(u|p)\//.test(h);
+  const h=decodeURIComponent(location.hash.slice(1)),pv=$('pageview'),on=h==='ranks'||/^(u|p|l|t)\//.test(h);
   document.body.classList.toggle('paged',on);pv.hidden=!on;
+  if(!h.startsWith('l/'))lessonsLeave();
+  if(!h.startsWith('t/'))testsLeave();
   if(!on){page.inside=false;return}
-  scrollTo(0,0);if(h==='ranks')renderRanks();else showProfile(h);
+  scrollTo(0,0);if(h==='ranks')renderRanks();else if(h.startsWith('l/'))renderLesson(h.slice(2));else if(h.startsWith('t/'))renderTestPage(h.slice(2));else showProfile(h);
 }
 addEventListener('hashchange',route);
 addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('paged')&&!document.querySelector('dialog[open]')){const b=$('pvBack');if(b)b.click()}});

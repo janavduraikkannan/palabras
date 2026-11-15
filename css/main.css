@@ -343,7 +343,6 @@ dialog.onb{max-width:min(760px,calc(100vw - 20px));width:100%;max-height:calc(10
 .onbtri section{border:2px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--surface);font-size:.94rem}
 .onbtri h3{margin:0 0 2px;font-size:1.02rem}.onbtri ul{padding-left:18px!important}
 .onbtri .ok{border-top:6px solid var(--ok)}.onbtri .maybe{border-top:6px solid var(--gold)}.onbtri .no{border-top:6px solid var(--bad)}
-#onbBody video{width:100%;border-radius:8px;border:2px solid var(--line2);background:#111;display:block;margin:8px 0}
 #onbBody details{border:2px solid var(--line);border-radius:10px;padding:6px 12px;margin:8px 0;background:var(--surface)}
 #onbBody summary{cursor:pointer;font-weight:800}
 #onbBody a{color:var(--accent2);font-weight:700}#onbBody a.btn{color:var(--accent-ink);text-decoration:none;display:inline-block}

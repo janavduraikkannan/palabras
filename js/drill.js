@@ -2,12 +2,14 @@
    The charts beside the sentence (buildCharts, renderCharts) and prep() are in site/language.js. */
 async function tryStart(){
   $('keymsg').textContent='';store.set('prov',$('prov').value);
-  const list=activeSlots();
-  if(!list.length){if(!advanced&&!acct.key&&!slots.some(x=>x.key)){openOnb(3);return}$('keymsg').textContent=advanced?'Add a key, or turn one back on, under Edit keys.':'Paste an AI API key first. Tap ⓘ for keys that work.';if(!advanced)$('key').focus();return;}
+  const list=activeSlots(),L=slots.find(x=>x.local),local=!!(L&&L.on&&LAI.usable());
+  if(local&&!list.length){start();return}
+  if(!list.length){$('keymsg').textContent=advanced?'Add a key, or turn one back on, under Edit keys.':'Paste an AI API key first. Tap ⓘ for keys that work.';if(!advanced)$('key').focus();return;}
   if(!list.some(s=>s.st)){$('startbtn').disabled=true;$('startbtn').textContent=list.length>1?'Checking keys…':'Checking key…';
     let ok=false,last=null;
     try{for(let i=0;i<list.length&&!ok;i++){const s=list[i];try{await useSlot(s);s.err='';ok=true}catch(e){last=e;s.err=e.message||'failed';if(advanced)keyNotice(s,e,list[i+1])}}}
     finally{$('startbtn').textContent='Start practice';sync();keysUI()}
+    if(!ok&&local){start();return}
     if(!ok){$('keymsg').textContent=advanced&&list.length>1?'None of your keys worked. '+(last.message||''):(last&&last.message?last.message+'.':'Could not reach the AI provider.');return}}
   start();
 }

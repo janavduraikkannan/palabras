@@ -22,11 +22,11 @@ function gainXP(pts,anchor){
   if(n1>n0){const r=RANKS[Math.min(n1,RANKS.length)-1];boom(true);toast('adoring',`Level ${n1}! You're now a {${r[0]}|${r[1]}}.`);hud();return true}
   hud();return false;
 }
-function award(mult=1,fixed=0){
+function award(mult=1,fixed=0,anchor){
   const pts=fixed||Math.max(1,Math.round((10+2*(Math.min(stats.streak,6)-1))*mult));
   const d=store.get('days',{last:'',count:0}),t=today(),y=today(new Date(Date.now()-864e5));
   if(d.last!==t){const c=d.last===y?d.count+1:1;store.set('days',{last:t,count:c});if(c>store.get('best',0))store.set('best',c);if(c>1)toast('delighted',`${c}-day streak! ${TXT.wellDone}! Keep it up!`);}
-  const lv=gainXP(pts);
+  const lv=gainXP(pts,anchor);
   if(!lv&&stats.streak&&stats.streak%5===0){boom(false);toast('laughing',`${stats.streak} in a row! ${TXT.onFire}`);}
 }
 function react(kind){moodTok++;setFelix(R(REACT_MOODS[kind]))}

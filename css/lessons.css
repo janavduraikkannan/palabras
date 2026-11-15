@@ -1,0 +1,93 @@
+/* Lessons mode. Every colour comes from the site's own theme, so this file is the same on every practice site.
+   --accent2 marks history notes and footnotes, --accent marks endings, --gold marks tips, --ok and --bad mark results. */
+#paneLessons{margin-top:18px;padding-bottom:calc(var(--barh,220px) + 24px)}
+#bar.lsbar fieldset,#bar.lsbar .go,#bar.lsbar label:has(#limit){display:none}
+.lstop{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.lstop>div{flex:1 1 300px;min-width:0}
+.lstop .intro{margin:0 0 8px;color:var(--muted);max-width:62ch}
+.lsum{margin:0 0 6px}
+.lstop .legend{margin-top:10px}
+.lesson .legend{margin:0 0 10px}
+.lgo{text-decoration:none;display:inline-block}
+.lcourse{font-family:var(--display);font-weight:600;margin:26px 0 4px}
+.lunit h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin:18px 0 8px;color:var(--muted)}
+.lunit ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.lrow{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;color:inherit;text-decoration:none}
+.lrow:hover{border-color:var(--line2);background:var(--surface2)}
+.lrow.taught,.lrow.taught:hover{background:var(--wash);box-shadow:inset 3px 0 var(--accent2)}
+.lrow.next{border:2px solid var(--accent2)}
+.lrow .tag{margin-left:auto;flex:none}
+.lnum{flex:none;width:2em;height:2em;border-radius:50%;display:grid;place-items:center;font-weight:800;background:var(--surface2);border:1px solid var(--line);font-size:.9rem}
+.lrow.done .lnum{background:var(--ok);border-color:var(--ok);color:var(--onlv)}
+.lrow.marked .lnum{background:var(--gold);border-color:var(--gold);color:var(--onlv)}
+.ltxt{min-width:0}.ltxt b{display:block}
+.ltxt small{color:var(--muted);display:block}
+.lesson{max-width:760px;margin-inline:auto;padding-bottom:90px}
+.lesson h1{font-family:var(--display);font-weight:700;margin:2px 0 6px}
+.lesson h2{font-family:var(--display);font-weight:600;font-size:1.45rem;margin:30px 0 8px}
+.lesson h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin:22px 0 6px}
+.lesson p{margin:10px 0}
+.lkick{color:var(--muted);font-weight:700;font-size:.9rem;margin:0}
+.lblurb{color:var(--muted);font-size:1.08rem}
+.lstat{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lesson .la{font-family:var(--latin);font-size:1.06em}
+.lesson .end,.lqp .end{color:var(--accent);font-weight:800}
+.llist{margin:8px 0;padding-left:1.3em}.llist li{margin:4px 0}
+.lfn{text-align:left;background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-decoration:underline;text-decoration-color:var(--accent2);text-decoration-thickness:2px;text-underline-offset:3px}
+.lfn:hover{color:var(--accent2)}
+.lhist,.ltip{margin:16px 0;padding:10px 16px;border-radius:0 12px 12px 0;background:var(--surface);border:1px solid var(--line);border-left-width:5px}
+.lhist{border-left-color:var(--accent2)}.ltip{border-left-color:var(--gold)}
+.lhist>b,.ltip>b{font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}
+.lhist>b{color:var(--accent2)}.ltip>b{color:var(--gold)}
+.lhist p,.ltip p{margin:2px 0 4px}
+.lex{margin:12px 0;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.lex>div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px 16px;padding:7px 14px}
+.lex>div+div{border-top:1px solid var(--line)}
+.lex dt{font-family:var(--latin);font-size:1.08em}.lex dd{margin:0;color:var(--muted)}
+.ltable{overflow-x:auto;margin:14px 0}
+.ltable table{border-collapse:collapse;min-width:100%;background:var(--surface)}
+.ltable caption{text-align:left;font-weight:700;padding:0 0 6px}
+.ltable th,.ltable td{border:1px solid var(--line);padding:6px 11px;text-align:left;vertical-align:top}
+.ltable thead th{background:var(--surface2)}
+.ltable tbody th{font-weight:700;background:var(--wash)}
+.lq{margin:20px 0;background:var(--surface);border:2px solid var(--accent2);border-radius:14px;padding:12px 16px 14px;box-shadow:var(--shadow)}
+.lqhead{display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:space-between;align-items:baseline}
+.lqhead b{font-family:var(--display);font-size:1.05rem;color:var(--accent2)}
+.lqp{margin:8px 0 10px;font-size:1.06rem}
+.lqg{display:flex;flex-wrap:wrap;gap:6px 8px;margin:0 0 12px}
+.lqg>div{display:flex;flex-wrap:wrap;gap:0 7px;align-items:baseline;background:var(--wash);box-shadow:inset 3px 0 var(--accent2);border-radius:6px;padding:3px 10px 3px 12px}
+.lqg dt{font-family:var(--latin);font-size:1.02rem;font-weight:700}
+.lqg dd{margin:0;color:var(--muted);font-size:.92rem}
+.lqrow{display:flex;gap:10px;flex-wrap:wrap}
+.lqin{flex:1 1 220px;min-width:0;background:var(--wash);border:1.5px solid var(--line);border-radius:10px;padding:9px 12px}
+.lqin.la{font-family:var(--latin);font-size:1.1rem}
+.lqin.ok{border-color:var(--ok)}.lqin.bad{border-color:var(--bad)}
+.lq .macrons{margin-top:8px}
+.lq .choices button .la{font-family:var(--latin)}
+.lq .choices button:disabled{cursor:default}
+.lqfb:not(:empty){margin-top:12px}
+.lqres .arow{display:flex;gap:8px;align-items:flex-start}
+.lqres .arow img{width:34px;height:34px;flex:none}
+.lqres .ca{background:var(--surface2);border:1px solid var(--line);padding:9px 14px;border-radius:14px;min-width:0}
+.lqres.ok .ca{border-color:var(--ok)}.lqres.bad .ca{border-color:var(--bad)}
+.lsug{margin:10px 0 0;padding:8px 12px;border:1px dashed var(--accent2);border-radius:10px}
+.lqbtns{margin-top:12px}
+.lend{margin-top:34px;border-top:1px solid var(--line);padding-top:6px}
+.lfin{margin:6px 0}
+.lnav{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:18px}
+.lnav a.btn{text-decoration:none;display:inline-block}
+.lchatbtn{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:25;display:flex;align-items:center;gap:8px;background:var(--accent2);color:var(--accent2-ink);border:0;border-radius:999px;padding:7px 16px 7px 8px;font-weight:800;cursor:pointer;box-shadow:var(--shadow)}
+.lchatbtn img{width:34px;height:34px}
+.lchat{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(72px + env(safe-area-inset-bottom,0px));z-index:26;width:min(400px,calc(100vw - 24px));max-height:min(70vh,560px);display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line2);border-radius:16px;padding:10px 12px 12px;box-shadow:var(--shadow)}
+.lchat[hidden],.lchatbtn[hidden]{display:none}
+.lchat header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.lchat header img{width:32px;height:32px}
+.lchat header .x{position:static;margin-left:auto;background:none;border:0;font-size:1.4rem;line-height:1;cursor:pointer;color:var(--muted)}
+.lchat .chat{flex:1;min-height:0;margin-bottom:10px}
+.lchat .askrow input{flex:1 1 150px;min-width:0;background:var(--wash);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.lfoot{max-width:min(520px,calc(100vw - 32px))}
+@media (max-width:560px){
+  .lex>div{grid-template-columns:1fr}
+  .lchat{right:12px;left:12px;width:auto;bottom:calc(68px + env(safe-area-inset-bottom,0px))}
+  .lrow .tag{display:none}
+}

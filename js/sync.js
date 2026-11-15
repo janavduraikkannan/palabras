@@ -21,6 +21,10 @@ async function cloudPut(id,data){
   if(!r.ok)throw new Error(r.status===403?'Saving was refused (the account server\'s security rules may not be published yet).':r.status===404?'The account server isn\'t finished being set up yet (no Firestore database).':'Saving to your account failed (error '+r.status+').');
 }
 const readLS=k=>{try{const v=localStorage.getItem(k);return v===null?undefined:JSON.parse(v)}catch(e){return undefined}};
+/* Lesson progress from two devices: keep everything either one has. f: 1 finished (XP paid), 2 marked complete without XP; q: question spots that paid XP; n: written questions used. */
+function lessonMerge(a,b){a=a||{};b=b||{};const m={f:{...(a.f||{}),...(b.f||{})},q:{...(a.q||{}),...(b.q||{})},n:{...(a.n||{})}};
+  Object.keys(m.f).forEach(k=>{if((a.f||{})[k]===1||(b.f||{})[k]===1)m.f[k]=1});
+  Object.entries(b.n||{}).forEach(([k,v])=>{m.n[k]=Math.max(m.n[k]||0,v)});return m}
 /* The account document holds Verba's Latin progress at the top level, the shared profile and settings, and each other language under its own key (SITE.langKey: "es", "fr", "de"). */
 const localData=()=>{const o={};
   if(!LANG)SYNC_KEYS.forEach(k=>{try{const v=localStorage.getItem('verba.'+k);if(v!==null)o[k]=JSON.parse(v)}catch(e){}});
@@ -29,8 +33,8 @@ const localData=()=>{const o={};
   return o};
 /* Keep what other sites store in the same account, and drop saved AI keys when unticked. */
 function mergeOut(remote,local){
-  if(!LANG){const m=Object.assign({},remote||{},local);if(!local.aikeys)delete m.aikeys;return m}
-  const m=Object.assign({},remote||{});GLOBAL_KEYS.forEach(k=>{if(k in local)m[k]=local[k]});m[LANG]=local[LANG]||{};if(local.aikeys)m.aikeys=local.aikeys;else delete m.aikeys;return m}
+  if(!LANG){const m=Object.assign({},remote||{},local);if(!local.aikeys)delete m.aikeys;if(remote&&(remote.lessons||local.lessons))m.lessons=lessonMerge(remote.lessons,local.lessons);return m}
+  const m=Object.assign({},remote||{});GLOBAL_KEYS.forEach(k=>{if(k in local)m[k]=local[k]});m[LANG]=local[LANG]||{};{const rl=((remote||{})[LANG]||{}).lessons;if(rl||m[LANG].lessons)m[LANG].lessons=lessonMerge(rl,m[LANG].lessons)}if(local.aikeys)m.aikeys=local.aikeys;else delete m.aikeys;return m}
 function applyRemote(d){
   if(!d)return;
   if(!LANG){
@@ -40,6 +44,7 @@ function applyRemote(d){
   if(l.since&&(!d.since||l.since<d.since))d.since=l.since;
   if(l.wk&&d.wk&&(l.wk.id>d.wk.id||(l.wk.id===d.wk.id&&l.wk.xp>d.wk.xp)))d.wk=l.wk;
   if(l.days&&d.days&&(l.days.last>d.days.last||(l.days.last===d.days.last&&l.days.count>d.days.count)))d.days=l.days;
+  if(l.lessons||d.lessons)d.lessons=lessonMerge(l.lessons,d.lessons);
   SYNC_KEYS.forEach(k=>{if(k in d){try{localStorage.setItem('verba.'+k,JSON.stringify(d[k]))}catch(e){}}});
   }else{
   const ll=(localData()[LANG])||{},r=Object.assign({},d[LANG]||{});
@@ -48,15 +53,17 @@ function applyRemote(d){
   if(ll.since&&(!r.since||ll.since<r.since))r.since=ll.since;
   if(ll.wk&&(!r.wk||ll.wk.id>r.wk.id||(ll.wk.id===r.wk.id&&ll.wk.xp>r.wk.xp)))r.wk=ll.wk;
   if(ll.days&&(!r.days||ll.days.last>r.days.last||(ll.days.last===r.days.last&&ll.days.count>r.days.count)))r.days=ll.days;
+  if(ll.lessons||r.lessons)r.lessons=lessonMerge(ll.lessons,r.lessons);
   GLOBAL_KEYS.forEach(k=>{if(k in d){try{localStorage.setItem('verba.'+k,JSON.stringify(d[k]))}catch(e){}}});
   LANG_KEYS.forEach(k=>{if(k in r){try{localStorage.setItem(SITE.id+'.'+k,JSON.stringify(r[k]))}catch(e){}}});
   }
-  if(Array.isArray(d.aikeys)&&d.aikeys.length){slots=d.aikeys.map(mkSlot);keyRemA=true;lsSet('verba-keys-account',true);if(keyRemB)lsSet('verba-aikeys',serialKeys())}
+  if(Array.isArray(d.aikeys)&&d.aikeys.length){slots=moveKeys(d.aikeys).map(mkSlot);keyRemA=true;lsSet('verba-keys-account',true);if(keyRemB)lsSet('verba-aikeys',serialKeys());if(keysMoved){keysMoved=false;saveKeys();try{keysUI(true);toast('happy','Your saved AI keys are under Edit keys, below the local AI, and turned on.')}catch(e){}}}
   else if(keyRemA){keyRemA=false;lsSet('verba-keys-account',false)}
   refreshFromStore();
 }
 function refreshFromStore(){
   try{hud()}catch(e){}
+  try{lessonsPane();if(ls.cur)lsStatus()}catch(e){}
   if(typeof selected==='undefined'||!$('levels').children.length)return;
   selected.clear();store.get('topics',[]).forEach(id=>TOPICS.some(t=>t.id===id)&&selected.add(id));
   document.querySelectorAll('#levels input').forEach(b=>b.checked=selected.has(b.value));
