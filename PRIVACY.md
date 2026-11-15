@@ -6,7 +6,7 @@ This page explains, as plainly as possible, what information Palabras stores, wh
 
 ## Our honest promise
 
-Palabras keeps as little about you as it can, and tells you plainly about everything it does keep. **Palabras cannot promise that anything you give it is private or secure.** Palabras has no database server of its own (only a small relay that passes AI requests along without saving them), no staff, and no way to encrypt your data. Your practice happens in your own browser. If you choose to make an account or join the leaderboard, that information is stored with Google Firebase, is not encrypted, and can be seen by the site's owner and, for leaderboard information, by anyone. Other companies you connect to through Palabras, such as the AI company that checks your answers, have their own privacy policies, and Palabras cannot make any promises about what they do. **Only give Palabras information you would be comfortable with anyone seeing.** Never type your address, your phone number or other personal details into Palabras, and never use a password for Palabras that you use anywhere else.
+Palabras keeps as little about you as it can, and tells you plainly about everything it does keep. **Palabras cannot promise that anything you give it is private or secure.** Palabras has no database server of its own (only a small relay that passes AI requests along without saving them, and a small counter that saves an anonymous visitor count, described under [Counting visitors](#counting-visitors)), no staff, and no way to encrypt your data. Your practice happens in your own browser. If you choose to make an account or join the leaderboard, that information is stored with Google Firebase, is not encrypted, and can be seen by the site's owner and, for leaderboard information, by anyone. Other companies you connect to through Palabras, such as the AI company that checks your answers, have their own privacy policies, and Palabras cannot make any promises about what they do. **Only give Palabras information you would be comfortable with anyone seeing.** Never type your address, your phone number or other personal details into Palabras, and never use a password for Palabras that you use anywhere else.
 
 ## At a glance
 
@@ -91,12 +91,12 @@ Palabras and Verba (the Latin site) use **one account system**. An account key, 
 To learn how many people use the practice sites (Verba, Palabras, Mots and Wörter), for example to show how many students they have helped, the sites keep an anonymous count of visitors. This is how it works:
 
 - The first time you visit any of the sites, your browser makes a random 32-character ID and saves it in your browser (`lang-vid`). It is not made from your name, account, device or anything else about you. The sites share one browser storage area, so the same ID is used on all four.
-- At most once a day for each site, your browser sends that ID and the name of the site to a small counter program run on **Cloudflare Workers**.
+- About once a day for each site, your browser sends that ID and the name of the site to a small counter program run on **Cloudflare Workers**. Opening two tabs, or a send that fails and is tried again, can send it more than once; the counter ignores repeats.
 - The counter scrambles the ID with a secret value that only the counter knows, and saves **only** three things: the date, the name of the site, and the scrambled ID. It does not save your IP address, your browser or device details, your name, your account, your progress, or anything you do or type on the site. The scrambled ID cannot be turned back into the ID in your browser, and it is never linked to an account, a profile or the leaderboard.
 - Because the ID is the same on every site, someone who uses two sites is counted once for each site and once in the total for all sites. That is the only reason the ID is shared.
 - If your browser sends a Global Privacy Control or Do Not Track signal, the sites do not make an ID and do not send anything.
-- The site's owner sees only totals and charts: how many different people there were per day, per week and overall, for each site and for all of them together. These numbers are estimates. Clearing your browser data, using a private window or using another device makes a new ID, so you would be counted again.
-- Cloudflare runs the computers the counter works on and may keep basic request logs, such as your IP address. [Cloudflare Privacy Policy](https://www.cloudflare.com/privacypolicy/)
+- The dashboard the site's owner uses shows only totals and charts: how many different people there were per day, per week and overall, for each site and for all of them together. These numbers are estimates. Clearing your browser data, using a private window or using another device makes a new ID, so you would be counted again. The owner also runs the counter's database, so could look at the saved rows, but they hold only the date, the site name and the scrambled ID, nothing that says who you are.
+- Cloudflare runs the computers the counter works on and may keep basic request logs, such as your IP address. The counter itself uses your IP address only for a moment, to limit how many requests one place can send, and does not save it. [Cloudflare Privacy Policy](https://www.cloudflare.com/privacypolicy/)
 
 The counter's code is public in the Verba repository ([stats/worker.js](https://github.com/janavduraikkannan/verba/blob/main/stats/worker.js)) for anyone to check.
 
@@ -168,7 +168,7 @@ Palabras is meant for high school Spanish students.
 ## Deleting your information
 
 - **In your browser:** clear this site's data in your browser settings.
-- **Visitor count:** clearing this site's data gives you a new random ID. Counts already recorded cannot be matched back to you, so they cannot be deleted one by one.
+- **Visitor count:** clearing this site's data gives you a new random ID. The counter never keeps your browser's ID, only a scrambled copy, so it cannot find your records afterwards and they cannot be deleted one by one.
 - **On the leaderboard:** turn the leaderboard off in your account settings. This clears your profile from the public entry.
 - **Your password login:** click "Turn off password login" in the Account window. This switches off the login record.
 - **Your account and leaderboard entry:** you can't delete these yourself from the site. Ask the site's owner to delete them. Don't post your account key publicly to do this.
