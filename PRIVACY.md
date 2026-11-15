@@ -1,6 +1,6 @@
 # Palabras Privacy Statement
 
-*Last updated: November 4, 2026 (AI relay added)*
+*Last updated: November 15, 2026 (visitor counter added)*
 
 This page explains, as plainly as possible, what information Palabras stores, where it goes, and who can see it. Palabras is a free practice site made by a student for high school Spanish classes, and the sister site of [Verba](https://janavduraikkannan.github.io/verba/) (Latin). It is not run by a company, a school or a school district.
 
@@ -13,6 +13,7 @@ Palabras keeps as little about you as it can, and tells you plainly about everyt
 | Information | Where it's kept | Who can see it |
 | --- | --- | --- |
 | Your progress and settings (without an account) | Only in your browser | Only you, on that browser |
+| A random visitor ID (to count visitors) | Your browser. The counter keeps only a scrambled copy of it, with the date and the site name | The site's owner, as totals and charts |
 | Your AI key (not saved) | Nowhere; it is only used while the page is open | The AI company it belongs to. With the relay on, it also passes through the Palabras relay, which doesn't save it |
 | Your AI key (saved to this browser) | Your browser, as plain text | Anyone who can use your browser |
 | Your AI key (saved to your account) | Google Firebase, as plain text | Anyone with your account key, and the site's owner |
@@ -34,8 +35,9 @@ Palabras saves these in your browser's local storage, on your device only:
 - Your account key, if you have signed in on this browser.
 - Your profile details, if you have filled any in.
 - A small cache of other students' leaderboard pictures, so the leaderboard loads faster.
+- A random ID used to count visitors (`lang-vid`), and the date each site last counted you (`lang-ping-` followed by the site's name). See [Counting visitors](#counting-visitors). They are not tied to your account.
 
-Palabras does not use cookies, advertising, analytics or tracking of any kind. You can erase everything Palabras keeps in your browser by clearing this site's data in your browser settings. If you haven't saved your account key somewhere else, clearing it means you can't get back into your account.
+Palabras does not use cookies, advertising, or tracking of what you do. It does keep an anonymous count of how many people use the sites, described under [Counting visitors](#counting-visitors). You can erase everything Palabras keeps in your browser by clearing this site's data in your browser settings. If you haven't saved your account key somewhere else, clearing it means you can't get back into your account.
 
 ### In an account (optional)
 
@@ -84,6 +86,20 @@ Palabras and Verba (the Latin site) use **one account system**. An account key, 
 - **Leaderboards are separate.** Palabras has its own public Spanish leaderboard entry, with the same scrambled name as your Verba entry and the same username, but only your Spanish XP, streak and Spanish course.
 - On the same browser, signing in on one site signs you in on the other, because both sites are hosted at the same address (janavduraikkannan.github.io).
 
+## Counting visitors
+
+To learn how many people use the practice sites (Verba, Palabras, Mots and Wörter), for example to show how many students they have helped, the sites keep an anonymous count of visitors. This is how it works:
+
+- The first time you visit any of the sites, your browser makes a random 32-character ID and saves it in your browser (`lang-vid`). It is not made from your name, account, device or anything else about you. The sites share one browser storage area, so the same ID is used on all four.
+- At most once a day for each site, your browser sends that ID and the name of the site to a small counter program run on **Cloudflare Workers**.
+- The counter scrambles the ID with a secret value that only the counter knows, and saves **only** three things: the date, the name of the site, and the scrambled ID. It does not save your IP address, your browser or device details, your name, your account, your progress, or anything you do or type on the site. The scrambled ID cannot be turned back into the ID in your browser, and it is never linked to an account, a profile or the leaderboard.
+- Because the ID is the same on every site, someone who uses two sites is counted once for each site and once in the total for all sites. That is the only reason the ID is shared.
+- If your browser sends a Global Privacy Control or Do Not Track signal, the sites do not make an ID and do not send anything.
+- The site's owner sees only totals and charts: how many different people there were per day, per week and overall, for each site and for all of them together. These numbers are estimates. Clearing your browser data, using a private window or using another device makes a new ID, so you would be counted again.
+- Cloudflare runs the computers the counter works on and may keep basic request logs, such as your IP address. [Cloudflare Privacy Policy](https://www.cloudflare.com/privacypolicy/)
+
+The counter's code is public in the Verba repository ([stats/worker.js](https://github.com/janavduraikkannan/verba/blob/main/stats/worker.js)) for anyone to check.
+
 ## What the site's owner can see
 
 The owner of Palabras runs the Firebase project and can see **everything stored in it**: every account (including full names and any AI keys saved to accounts), every leaderboard entry, and every username. The owner cannot see what is only in your browser, cannot see AI keys you haven't saved to an account, and does not receive your conversations with Felicísimo. The relay's code passes AI requests and AI keys along without saving or logging them. In principle the owner could change that code, so the code is public in the Verba repository ([relay/worker.js](https://github.com/janavduraikkannan/verba/blob/main/relay/worker.js)) for anyone to check.
@@ -98,6 +114,7 @@ Palabras relies on other companies to work. When your browser talks to them, the
 
 - **GitHub** hosts the website and may keep visitor logs, including IP addresses. [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement)
 - **Google Firebase (Cloud Firestore)** stores accounts, the leaderboard and usernames, and may keep request logs. [Firebase privacy](https://firebase.google.com/support/privacy) · [Google Privacy Policy](https://policies.google.com/privacy)
+- **Cloudflare Workers** runs the visitor counter (see [Counting visitors](#counting-visitors)) and may keep basic request logs. [Cloudflare Privacy Policy](https://www.cloudflare.com/privacypolicy/)
 
 ### The Palabras AI relay
 
@@ -151,6 +168,7 @@ Palabras is meant for high school Spanish students.
 ## Deleting your information
 
 - **In your browser:** clear this site's data in your browser settings.
+- **Visitor count:** clearing this site's data gives you a new random ID. Counts already recorded cannot be matched back to you, so they cannot be deleted one by one.
 - **On the leaderboard:** turn the leaderboard off in your account settings. This clears your profile from the public entry.
 - **Your password login:** click "Turn off password login" in the Account window. This switches off the login record.
 - **Your account and leaderboard entry:** you can't delete these yourself from the site. Ask the site's owner to delete them. Don't post your account key publicly to do this.
