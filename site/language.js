@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Spanish: how the language behaves in the shared practice code ----------
    Each piece here is called by a shared script (named beside it). Grammar itself is in engine.js. */
 /* js/core.js glossify(): fold a word so accents don't stop a hover definition from matching */

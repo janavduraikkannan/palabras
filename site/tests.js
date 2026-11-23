@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later AND CC-BY-SA-4.0
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Palabras's Practice Test mode: the pages it lists, the study guide, and the verb test with its answer checker ----------
    The mechanics (the tab, the page, check-as-you-go or check-at-the-end, the AI explanations) are in js/tests.js, which is the same on
    every practice site. This file holds what is specific to Spanish.

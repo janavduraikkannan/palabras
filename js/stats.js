@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Anonymous visitor counter ----------
    Sends a random per-browser ID and this site's name, at most once per site per day, so the owner can count how many
    people use the sites. The four sites share one browser storage area, so the same random ID (lang-vid) is used on all

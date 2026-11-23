@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Checking answers (fill-in blanks, whole sentences, multiple choice) and the drill's buttons ----------
    Typing helpers (long vowels, accents, umlauts) and the wording of a sentence's result are in site/language.js. */
 function check(){

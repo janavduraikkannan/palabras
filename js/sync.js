@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 
 /* ---------- Accounts: a personal account key, synced through Firebase Firestore ---------- */
 var ACCOUNTS={projectId:'verba-791ca',apiKey:''}; // Firebase project; a web API key is optional (access is governed by firestore.rules)

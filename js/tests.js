@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Practice Test mode: the mechanics (shared by every practice site) ----------
    A site has this mode if it has site/tests.js, which defines PTESTS: the groups of pages, the study guide pages and the tests
    (see that file). A site without it never shows the Practice Test tab, so this file can be copied everywhere.

@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Identify-the-use tab: choose the uses to drill, English or target-language sentences, AI grading for typed uses ----------
    Loaded from index.html right after site/engine.js, then site/uses.js adds each language's extra uses.
    Nothing here runs on load; buildUsePane() is called from buildStart() and usesSync() from sync() (js/topics.js),

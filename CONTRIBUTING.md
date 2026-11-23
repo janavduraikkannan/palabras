@@ -30,7 +30,7 @@ Thanks for wanting to help! Palabras is a personal project run by one student, s
    - Topics and expected answers should match how the course teaches them.
 5. The Firestore security rules live only in [`firestore.rules` in the linguae repository](https://github.com/janavduraikkannan/linguae/blob/main/firestore.rules). Changes to them affect everyone's accounts on both Palabras and Verba, so they get extra careful review and may simply not be accepted.
 
-By submitting a pull request, you confirm the work is yours to share and you agree it can be used in Palabras under whatever license the owner chooses.
+By submitting a pull request, you confirm the work is yours to share. Before a pull request can be merged you must **sign the Contributor License Agreement (CLA)** through CLA Assistant: https://cla-assistant.io/janavduraikkannan/palabras. Your contribution is then licensed under the same terms as the rest of Palabras: code under the [GNU AGPL-3.0-or-later](LICENSE) and content (artwork, documentation, word lists, lesson text) under [CC BY-SA 4.0](LICENSE-CONTENT). The CLA also lets the owner offer Palabras under other licenses in the future.
 
 ## Security problems
 

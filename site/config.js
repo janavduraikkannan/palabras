@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Palabras: everything about this site that isn't grammar ----------
    The shared code (index.html, keys.html, getkey.html, css/ and js/) is identical on every practice site.
    This folder, site/, holds what differs: this file (names, text, lists), cat.js (the tutor cat and its AI prompts),

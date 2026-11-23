@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 
 /* ---------- AI provider layer (free and paid keys; one or many, ranked) ---------- */
 const PROVIDERS={

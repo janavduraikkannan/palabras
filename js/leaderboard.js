@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 
 /* ---------- Optional profile, profile pages and the public, live leaderboard ----------
    Each account gets a public leaderboard entry at board/<id>, where the id is a hash of the secret account key,

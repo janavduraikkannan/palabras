@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Runs in the <head> of every page, right after site/config.js: the page title and the tab icon ----------
    index.html uses SITE.title; keys.html and getkey.html give their own title in <html data-title> ({name} becomes SITE.name)
    and take their link and button colours from SITE.pageAccent and SITE.pageButton. */

@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Fills in the site-specific parts of a shared page (index.html, keys.html, getkey.html) ----------
    Runs at the end of <body>, before every other script. Values come from site/config.js.
    <template data-s="key"></template>      is replaced by FILL[key]()   (text or HTML)

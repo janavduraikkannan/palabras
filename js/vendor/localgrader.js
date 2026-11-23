@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* Grader v4: code compares words using Whitaker's grammar and definitions, and the model only judges whether two plain sentences mean the same. */
 (function(root){
 const FAM={

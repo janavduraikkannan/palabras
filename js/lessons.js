@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Lessons: the mechanics (shared by every practice site) ----------
    A site has lessons if it has site/lessons.js, which defines LESSONS: the lessons themselves, their question banks and the XP values.
    A site without that file simply never shows the Lessons tab, so this file can be copied everywhere.

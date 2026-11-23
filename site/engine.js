@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later AND CC-BY-SA-4.0
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ===================== ENGINE ===================== */
 const R=a=>a[Math.floor(Math.random()*a.length)], chance=p=>Math.random()<p;
 const T6=s=>s.split(' ');

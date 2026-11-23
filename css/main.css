@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Styles shared by every practice site. Each site's own colours are in site/theme.css. ---------- */
 :root{
   /* the accent and level colours (--accent, --accent2, --brand, --lv1 to --lv5) are in site/theme.css */

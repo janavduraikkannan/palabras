@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Local AI: Qwen runs in the browser and grades translations on this device ----------
    Only on sites whose SITE.localAI is true. Code grades first (js/vendor/localgrader.js). Whatever code can't settle gets two
    checks from Qwen: one tries to prove the answer wrong, one tries to prove it right. If they disagree, the tie goes to the

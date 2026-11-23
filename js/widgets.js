@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Page widgets: the hover-definition tooltip and the light/dark switch ---------- */
 (function(){
   // The tooltip has to sit in the browser's top layer: open dialogs (onboarding, leaderboard, account) are drawn above

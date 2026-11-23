@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* Practice Test mode. Every colour comes from the site's own theme, so this file is the same on every practice site.
    Study guide colours: --accent2 stem, --gold vowel, --lv4 tense sign, --accent personal ending. --ok, --bad and --gold mark results. */
 #paneTests{margin-top:18px;padding-bottom:calc(var(--barh,220px) + 24px)}

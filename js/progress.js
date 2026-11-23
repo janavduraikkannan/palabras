@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- XP, levels, streaks, toasts and confetti ---------- */
 const lvlXP=n=>50*n*(n-1);
 const rankLv=xp=>{let n=1;while(xp>=lvlXP(n+1))n++;return n};

@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Felicísimo, Palabras's tutor cat: who the cat is, what it says, and what the AI is told ----------
    Used by js/tutor.js (asking questions), js/check.js (grading with the AI) and js/progress.js (faces). */
 const MOODS={happy:'friendly default',delighted:'excited: a great question, or the student is on the right track',laughing:'something funny, or a silly mix-up',adoring:'the student did something impressive or thanked you',sly:'a teasing hint or playful nudge, or you caught a question fishing for the answer',cheeky:'warm and encouraging, a little affectionate',shocked:'surprised: a big mistake or a tricky exception',sad:'sympathetic: the student is struggling or got it wrong',grumpy:'mock-grumpy about Spanish irregular verbs or about being asked for the answer outright',fish:'proud and triumphant, like a cat with its catch: the student nailed a tricky one or is on a streak'};

@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 
 /* ---------- Pages: profile pages (#u/username) and the ranks page (#ranks) ---------- */
 var page={inside:false};

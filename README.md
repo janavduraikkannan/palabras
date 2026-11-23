@@ -51,7 +51,7 @@ Suggestions, bug reports and pull requests are welcome, but none are guaranteed 
 
 ## Credits
 
-- Icons by Lorc and Delapouite from [game-icons.net](https://game-icons.net), [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) (see `img/icons/LICENSE-game-icons.txt`), including the guitar (Lorc) and castle (Delapouite).
+- Icons by Lorc and Delapouite from [game-icons.net](https://game-icons.net), [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) (see `img/icons/LICENSE-game-icons.txt`) Each icon's author is listed in `img/icons/CREDITS.md`., including the guitar (Lorc) and castle (Delapouite).
 - Day and night switch after Adam Argyle, "Building a theme switch component" ([web.dev](https://web.dev/articles/building/a-theme-switch-component), Apache 2.0), with a sun from [Feather Icons](https://feathericons.com) (MIT) and easings from [Open Props](https://open-props.style) (MIT).
 - Confetti by [canvas-confetti](https://github.com/catdad/canvas-confetti) (ISC).
 - Profile pictures come from [Wikimedia Commons](https://commons.wikimedia.org); each picture's author and license are shown on the site.
@@ -60,4 +60,16 @@ Suggestions, bug reports and pull requests are welcome, but none are guaranteed 
 
 ## License
 
-No license has been chosen yet, so all rights are reserved by the owner. The third-party pieces listed under Credits keep their own licenses.
+- **Code:** [GNU Affero General Public License v3.0 or later](LICENSE) (`AGPL-3.0-or-later`). Source files carry SPDX headers. If you run a modified version as a network service, the AGPL requires you to offer your users its source.
+- **Content:** [Creative Commons Attribution-ShareAlike 4.0 International](LICENSE-CONTENT) (`CC-BY-SA-4.0`). That means the artwork drawn for the project, the documentation, and the word lists, lesson text, grammar course data and question banks, including those that live inside `.js` files. A file that mixes code and content says `AGPL-3.0-or-later AND CC-BY-SA-4.0` in its SPDX header; a file that is only content says `CC-BY-SA-4.0`.
+- **Contributing:** contributions need a signed CLA. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+### Exceptions
+
+These are **not** covered by the licenses above and keep their own terms:
+
+- **Groq tutorial media** (`media/groq-key-tutorial.mp4`, `media/groq-key-poster.jpg`, `media/groq-key-tutorial.vtt`) show Groq's interface and branding and are **excluded from the content license**. See `media/NOTICE.md`.
+- **Icons** (`img/icons/`) are from [game-icons.net](https://game-icons.net) under CC BY 3.0 and **stay under CC BY 3.0**; they are not relicensed. Authors are listed in `img/icons/CREDITS.md`.
+- **WebLLM** (`js/vendor/webllm.js`) is under the Apache License 2.0 (`js/vendor/LICENSE-webllm.txt`). It is third-party code and keeps that license.
+- **Fonts** (Fraunces, Figtree, Gentium Book Plus) are loaded from Google Fonts at run time under the SIL Open Font License 1.1.
+- **Other third-party code** keeps its own license: the day and night switch (after Adam Argyle, [web.dev](https://web.dev/articles/building/a-theme-switch-component), Apache-2.0), the sun icon from [Feather Icons](https://feathericons.com) (MIT), easings from [Open Props](https://open-props.style) (MIT), and [canvas-confetti](https://github.com/catdad/canvas-confetti) (ISC), which the page loads from a CDN. Profile pictures are loaded from Wikimedia Commons, and each picture's author and license are shown on the site.

@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later AND CC-BY-SA-4.0
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Spanish: the rest of the course's form uses, for the identify-the-use tab ----------
    Loaded after js/usemode.js (the language name, LANG_NAME, is in site/config.js). Each new use has a gen() that builds a sentence with exactly one word
    tagged with the use's id, starting from the course's own topic generators. */

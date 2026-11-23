@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Practice: starting, showing each new sentence, and the score line ----------
    The charts beside the sentence (buildCharts, renderCharts) and prep() are in site/language.js. */
 async function tryStart(){

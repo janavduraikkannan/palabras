@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- The AI tutor cat: grading with the AI, asking questions, the cat's faces and the chat ----------
    What the cat is called and says (PERSONA, GREETINGS, LEAD_RULES ...) and the grading prompt live in site/cat.js. */
 const parseJ=t=>{const m=String(t).replace(/```(json)?/g,'').match(/\{[\s\S]*\}/);if(!m)throw new Error('the AI gave an unreadable reply');return JSON.parse(m[0])};

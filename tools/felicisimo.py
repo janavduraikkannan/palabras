@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (C) 2026 janavduraikkannan and Linguae contributors
 """Felicísimo mascot generator: Fēlix's Spanish cousin (bust, floating paws, one pose per mood).
 Same cat as Verba's Fēlix, in a traje corto: sombrero cordobés, short jacket, white shirt and red neckerchief.
 Run: python3 tools/felicisimo.py img/felicisimo"""

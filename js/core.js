@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Core: page state, the store (localStorage), escaping and hover definitions ----------
    Loaded first of the shared scripts. LEVELS, TAUGHT and the rest of the site's data come from site/config.js. */
 const $=id=>document.getElementById(id);

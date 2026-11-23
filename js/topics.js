@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 /* ---------- Start screen: topic levels, build-your-own lists, focus buttons and the start bar ---------- */
 function buildStart(){
   store.get('topics',[]).forEach(id=>TOPICS.some(t=>t.id===id)&&selected.add(id));

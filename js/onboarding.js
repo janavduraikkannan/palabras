@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 
 /* ---------- Optional onboarding: the site's cat explains privacy, accounts and how the site works ---------- */
 const ONB_PRIV=`<div class="onbtri">

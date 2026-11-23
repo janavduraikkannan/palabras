@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 
 /* Click a vocab word to type it into the answer box at the cursor (or at the end if the cursor was never placed). */
 const vocabLi=v=>{const w=vocabWords(v);return `<li tabindex="0" role="button" data-la="${esc(w.la)}" data-en="${esc(w.en)}" title="Click to put “${esc(q&&q.mode==='l2e'?w.en:w.la)}” in your answer">${esc(v)}</li>`};

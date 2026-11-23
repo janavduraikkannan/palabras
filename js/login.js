@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 janavduraikkannan and Linguae contributors */
 
 /* ---------- Optional username + password login ----------
    Verba has no server and never asks for an email. You log in with your unique username (case and macrons don't
